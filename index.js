@@ -5,14 +5,15 @@
  * Повертаємо - Нову множину, яка містить лише рядкові елементи.
  */
 function customSet(arr) {
-  const zal = new Set([arr]);
-  for (const value of arr) {
-    typeof arr;
-  }
-  if (arr != Number) {
-    return arr.delete;
+  let zal = new Set(arr);
+  for (let value of arr) {
+    if (typeof value === "number") {
+      zal.delete(value);
+    }
   }
   return zal;
+
+  // return zal;
   // Створення множини з масиву за допомогою конструктора Set
   // Перебираємо множину за допомогою 'for of'. Цикл 'for of' дозволяє пройтись по всіх елементах колекції.
   // Для кожного елемента перевіряємо, чи є цей елемент числом за допомогою оператора typeof
@@ -111,6 +112,11 @@ console.log(filterAndAdd(new Set([1, 2, 3, "a", "b", "c"]), ["d", "e", "f"]));
  * Повертаємо - рядок із повідомленням про наявність значення та його тип.
  */
 function checkValueAndType(mySet, value) {
+  if (mySet.has("b")) {
+    return `Множина  має значення ${value} типу ${typeof value}`;
+  } else {
+    return `Множина не має значення ${value}`;
+  }
   // Використовуємо метод has для перевірки, чи містить множина певне значення.
   // Якщо значення знайдено, повертаємо рядок Множина має значення "${value}" типу "${typeof value}".
   // Якщо значення не знайдено, повертаємо рядок Множина не має значення "${value}".
@@ -174,9 +180,13 @@ console.log(removeDuplicatesInPlace([1, 2, 2, 3, 3, 4, 5, 5]));
  */
 function areDisjoint(set1, set2) {
   for (const value of set1) {
-    if (set1.has() === set2.has()) return false;
+    if (set1.has(set2)) {
+      return false;
+    } else {
+      return true;
+    }
   }
-  return true;
+
   // Перебираємо першу множину за допомогою оператору for of
   // Якщо знайдено спільний елемент з другою множиною,використовуємо метод has, повертаємо false
   //Якщо немає  спільних елементів повертаємо true
@@ -196,6 +206,13 @@ console.log(areDisjoint(new Set([1, 2, 3]), new Set([3, 4, 5])));
  * Повертаємо - Множина з елементами, що належать set1, але не належать set2.
  */
 function getDifference(set1, set2) {
+  let differenceSet = new Set();
+  for (const value of set1) {
+    if (!set2.has(value)) {
+      differenceSet.add(value);
+    }
+  }
+  return differenceSet;
   // Створення множини differenceSet
   // Перебір елементів першої множини за допомогою оператору for of
   // Якщо елемент не належить другій множині, додаємо його до differenceSet
@@ -269,9 +286,13 @@ iterateSet(new Set(["a", "b", "c"]));
  * Повертаємо - Суму числових елементів у множині.
  */
 function sumNumbers(set) {
-  set.forEach((elem) => elem);
-  set === Number;
-  const sum = set++;
+  let sum = 0;
+  set.forEach((elem) => {
+    if (typeof elem === "number") {
+      sum += elem;
+    }
+  });
+
   // Використання методу forEach для перебору елементів множини
   // Перевірка, чи є елемент числом
   // Додавання числового елемента до суми
